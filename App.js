@@ -41,6 +41,18 @@ export default class App extends Component<{}> {
 			</View>
 		);
 	}
+
+	/**
+	 * show the pressed section
+	 * @param param
+	 */
+	productNavigate(param) {
+		console.log('productNavigate', param.section.id)
+		var selectedProduct = <ScrollTabs section={param.section.id} sectionCategories={getSectionCategory(param.section.id)}/>
+		this.setState(previousState => {
+			return { currentProduct: selectedProduct };
+		});
+	}
 }
 const styles = StyleSheet.create({
 	container: {

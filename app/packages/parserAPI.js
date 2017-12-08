@@ -7,7 +7,7 @@ import React, {
 	WebView,
 } from 'react-native'
 
-
+const cheerio = require('cheerio');
 var DomParser = require('react-native-html-parser').DOMParser
 
 export class KZParserApi extends Component {
