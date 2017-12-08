@@ -18,8 +18,7 @@ export default class DrawerList extends Component {
 					renderItem={({item}) =>
 						<TouchableOpacity  style={styles.sectionHeadingStyle}
 						                   key={item.title}
-						                   onPress={() => this.props.onPressEvent({ section: item })}
-						                   style={{margin: 10, fontSize: 15, textAlign: 'left'}}>
+						                   onPress={() => this.props.onPressEvent({ section: item })}>
 						<Text >{item.title}</Text>
 						</TouchableOpacity>
 					}

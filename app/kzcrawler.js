@@ -32,9 +32,10 @@ function getProductsSections() {
 	return res;
 }
 function loadProducts(section, subsection) {
-	// console.log('loadProducts',section, subsection )
+	console.log('loadProducts',section, subsection )
 	// let res = await dataCrawler.crawl_data(section,subsection);
 	if(!repo.all_products[section] || !repo.all_products[section][subsection]){
+		console.log('no products for section:', section);
 		return [];
 	}
 	return repo.all_products[section][subsection];

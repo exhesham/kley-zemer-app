@@ -16,6 +16,7 @@ export default class ProductsSection extends Component {
 				<FlatList
 					data={this.getProducts(this.props.section,this.props.category)}
 					renderItem={({item}) => <Product
+						key={item['product-url']}
 						title={item.name}
 						imageSrc={'http://kley-zemer.co.il/'+item['img-url']}
 						price1={item['price-1']}

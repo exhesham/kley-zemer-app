@@ -7,7 +7,7 @@ export default class Product extends Component {
 	render() {
 		return (
 			<View >
-				<TouchableOpacity style={{flex: 1, flexDirection: 'row'}}>
+				<TouchableOpacity style={{flex: 1, flexDirection: 'row', borderColor: 'black'}}>
 					<View>
 						<Image
 							source={{uri: this.props.imageSrc}}
@@ -30,16 +30,16 @@ const styles = StyleSheet.create({
 	item_title: {
 		color: 'white',
 		fontWeight: 'bold',
-		fontSize: 20,
+		fontSize: 15,
 	},
 	item_price1: {
 		color: 'white',
-		fontSize: 12,
+		fontSize: 11,
 	},
 	item_price2: {
 		color: 'white',
 		fontWeight: 'bold',
-		fontSize: 12,
+		fontSize: 11,
 	},
 	red: {
 		color: 'red',

@@ -15,7 +15,7 @@ export default class ScrollTabs extends Component {
 		var children = [];
 		var sectionCategories = this.props.sectionCategories;
 		for(var key in sectionCategories){
-			children.push(<ProductsSection  section={this.props.section} category={sectionCategories[key].id} tabLabel={sectionCategories[key].title} />)
+			children.push(<ProductsSection key={key}  section={this.props.section} category={sectionCategories[key].id} tabLabel={sectionCategories[key].title} />)
 		}
 
 		return (
