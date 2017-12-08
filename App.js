@@ -11,7 +11,7 @@ import Navbar from "./app/components/Navbar";
 import ScrollTabs from "./app/components/ScrollTabs";
 import {getSectionCategory, getSectionManufacture, getProductsSections} from './app/kzcrawler';
 import DrawerList from "./app/components/DrawerList";
-import theme from "./app/theme";
+import {getProducts} from  './app/packages/parserAPI'
 
 export default class App extends Component<{}> {
 	constructor(props) {
@@ -19,6 +19,8 @@ export default class App extends Component<{}> {
 		this.state = {
 			currentProduct: <ScrollTabs section={'guitars'} sectionCategories={getSectionCategory('guitars')}/>
 		};
+		console.log('will get products....')
+		getProducts('http://kley-zemer.co.il/?Section=2');
 	}
 
 	render() {

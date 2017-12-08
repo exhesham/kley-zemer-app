@@ -6,15 +6,15 @@ export default class Product extends Component {
 
 	render() {
 		return (
-			<View >
-				<TouchableOpacity style={{flex: 1, flexDirection: 'row', borderColor: 'black'}}>
-					<View>
+			<View style={styles.itemContainer} >
+				<TouchableOpacity style={{flex: 1, flexDirection: 'row'}}>
+					<View style={styles.imageContainer}>
 						<Image
 							source={{uri: this.props.imageSrc}}
-							style={{width: 80, height: 80}}
+							style={styles.image}
 						/>
 					</View>
-					<View>
+					<View style={styles.textContainer}>
 						<Text style={styles.item_title}>{this.props.title}</Text>
 						<Text style={styles.item_price1}>Credit: {this.props.price1}</Text>
 						<Text style={styles.item_price2}>Cash: {this.props.price2}</Text>
@@ -27,6 +27,29 @@ export default class Product extends Component {
 }
 
 const styles = StyleSheet.create({
+	itemContainer: {
+		marginBottom: 3,
+		borderWidth: 2,
+		borderColor: '#f2f4f7',
+		backgroundColor: '#2f3133',
+		borderRadius: 5,
+	},
+	image: {
+		width: 90,
+		height: 90,
+
+	},
+	imageContainer: {
+		padding: 3,
+		alignItems: 'center',
+		flexDirection: 'column',
+		justifyContent: 'center',
+	},
+	textContainer: {
+		paddingLeft: 5,
+		alignContent: 'center',
+		justifyContent: 'center',
+	},
 	item_title: {
 		color: 'white',
 		fontWeight: 'bold',
@@ -40,8 +63,5 @@ const styles = StyleSheet.create({
 		color: 'white',
 		fontWeight: 'bold',
 		fontSize: 11,
-	},
-	red: {
-		color: 'red',
 	},
 });
