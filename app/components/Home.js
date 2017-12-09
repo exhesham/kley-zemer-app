@@ -6,13 +6,17 @@
 
 import React, {Component} from 'react';
 import {View, StyleSheet, Text, DrawerLayoutAndroid} from 'react-native';
-import Navbar from "./app/components/Navbar";
+import Navbar from "./Navbar";
 
-import ScrollTabs from "./app/components/ScrollTabs";
-import {getSectionCategory} from './app/kzcrawler';
-import DrawerList from "./app/components/DrawerList";
+import ScrollTabs from "./ScrollTabs";
+import {getSectionCategory} from '../kzcrawler';
+import DrawerList from "./DrawerList";
 
-export default class App extends Component<{}> {
+
+
+export default class Home extends Component<{}> {
+
+
 	static navigationOptions = {
 		title: 'Welcome',
 	};
@@ -26,22 +30,23 @@ export default class App extends Component<{}> {
 	render() {
 
 		return (
-			<View style={styles.container}>
-				<DrawerLayoutAndroid
-					ref={(_drawer) => this.drawer = _drawer}
-					drawerWidth={300}
-					drawerPosition={DrawerLayoutAndroid.positions.Left}
-					renderNavigationView={() => <DrawerList onPressEvent={(sectionObject) => {
-						this.productNavigate(sectionObject)
-					}}/>}>
-					<View style={{flex: 1, alignItems: 'center'}}>
-						<Navbar openAppDrawer={() => {
-							this.drawer.openDrawer();
-						}}/>
-						{this.state.currentProduct}
-					</View>
-				</DrawerLayoutAndroid>
-			</View>
+				<View style={styles.container}>
+
+					<DrawerLayoutAndroid
+						ref={(_drawer) => this.drawer = _drawer}
+						drawerWidth={300}
+						drawerPosition={DrawerLayoutAndroid.positions.Left}
+						renderNavigationView={() => <DrawerList onPressEvent={(sectionObject) => {
+							this.productNavigate(sectionObject)
+						}}/>}>
+						<View style={{flex: 1, alignItems: 'center'}}>
+							<Navbar openAppDrawer={() => {
+								this.drawer.openDrawer();
+							}}/>
+							{this.state.currentProduct}
+						</View>
+					</DrawerLayoutAndroid>
+				</View>
 		);
 	}
 
@@ -63,7 +68,7 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		paddingTop: 22,
+
 		backgroundColor: '#B12228'
 	},
 	toolbar: {

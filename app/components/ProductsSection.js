@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {AppRegistry, ToolbarAndroid,ScrollView, View, StyleSheet, Text, DrawerLayoutAndroid, FlatList} from 'react-native';
-import Product from "./Product";
+import Product from "./ProductItem";
 
 import { loadProducts }  from '../kzcrawler';
 
@@ -21,6 +21,7 @@ export default class ProductsSection extends Component {
 						imageSrc={'http://kley-zemer.co.il/'+item['img-url']}
 						price1={item['price-1']}
 						price2={item['price-2']}
+						product_url={item['product-url']}
 					/>}
 				/>
 			</View>
@@ -30,7 +31,7 @@ export default class ProductsSection extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		paddingTop: 22,
+		paddingTop: 3,
 		backgroundColor: '#B12228'
 	},
 });

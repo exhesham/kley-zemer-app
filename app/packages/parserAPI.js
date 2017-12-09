@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 const cheerio = require('cheerio');
 var DomParser = require('react-native-html-parser').DOMParser
-var iconv = require('iconv-lite');
+//var iconv = require('iconv-lite');
 
 
 export {getProducts};

@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {Image, TouchableOpacity, View, StyleSheet, Text, DrawerLayoutAndroid, FlatList} from 'react-native';
 
 
-export default class Product extends Component {
+export default class ProductItem extends Component {
 
 	render() {
 		return (
-			<View style={styles.itemContainer} >
-				<TouchableOpacity style={{flex: 1, flexDirection: 'row'}}>
+			<View style={styles.itemContainer}>
+				<TouchableOpacity style={styles.touchContainter} onpress={()=>{this._open_web_view(this.props.product_url)}}>
 					<View style={styles.imageContainer}>
 						<Image
 							source={{uri: this.props.imageSrc}}
@@ -24,6 +24,10 @@ export default class Product extends Component {
 			</View>
 		);
 	}
+
+	_open_web_view(product_url) {
+		
+	}
 }
 
 const styles = StyleSheet.create({
@@ -34,6 +38,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#2f3133',
 		borderRadius: 5,
 	},
+	touchContainter: {flex: 1, flexDirection: 'row'},
 	image: {
 		width: 90,
 		height: 90,

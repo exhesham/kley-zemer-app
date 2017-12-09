@@ -6,14 +6,14 @@ import {
 
 import {Component} from "react";
 
-export default class ScrollTabs extends Component {
-
+export default class About extends Component {
+	static navigationOptions = {
+		title: 'Welcome',
+	};
 	render() {
-
 		return (
 			<View>
 				<Text>About</Text>
-
 				<Text>Designed and built by:</Text>
 				<Text>Hesham Yassin</Text>
 				<Text>Bassam Yassin</Text>
