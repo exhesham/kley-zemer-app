@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, DrawerLayoutAndroid} from 'react-native';
+import {View, StyleSheet, Text, AppRegistry} from 'react-native';
 import Navbar from "./app/components/Navbar";
 
 import ScrollTabs from "./app/components/ScrollTabs";
@@ -20,9 +20,7 @@ export default class App extends Component<{}> {
 	};
 	constructor(props) {
 		super(props);
-		this.state = {
-			currentProduct: <ScrollTabs section={'guitars'} sectionCategories={getSectionCategory('guitars')}/>
-		};
+
 	}
 
 	render() {
@@ -34,17 +32,6 @@ export default class App extends Component<{}> {
 		);
 	}
 
-	/**
-	 * show the pressed section
-	 * @param param
-	 */
-	productNavigate(param) {
-		console.log('productNavigate', param.section.id)
-		var selectedProduct = <ScrollTabs section={param.section.id} sectionCategories={getSectionCategory(param.section.id)}/>
-		this.setState(previousState => {
-			return { currentProduct: selectedProduct };
-		});
-	}
 }
 
 
@@ -63,3 +50,4 @@ const styles = StyleSheet.create({
 	},
 });
 
+// AppRegistry.registerComponent('App', () => App);

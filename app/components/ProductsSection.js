@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {AppRegistry, ToolbarAndroid,ScrollView, View, StyleSheet, Text, DrawerLayoutAndroid, FlatList} from 'react-native';
-import Product from "./ProductItem";
+import ProductItem  from "./ProductItem";
 
 import { loadProducts }  from '../kzcrawler';
 
@@ -15,7 +15,9 @@ export default class ProductsSection extends Component {
 
 				<FlatList
 					data={this.getProducts(this.props.section,this.props.category)}
-					renderItem={({item}) => <Product
+					renderItem={({item}) => <ProductItem
+						onProductPress={(product_data)=>{
+							this.props.onProductPress(product_data)}}
 						key={item['product-url']}
 						title={item.name}
 						imageSrc={'http://kley-zemer.co.il/'+item['img-url']}

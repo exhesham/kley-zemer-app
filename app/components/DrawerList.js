@@ -11,10 +11,16 @@ import {
 
 import {getProductsSections} from "../kzcrawler";
 
+
 export default class DrawerList extends Component {
 	static navigationOptions = {
 		title: 'Welcome',
 	};
+	constructor(props) {
+		super(props);
+
+	}
+
 	render() {
 
 		var navigationView = (
@@ -27,14 +33,18 @@ export default class DrawerList extends Component {
 					renderItem={({item}) =>
 						<TouchableOpacity style={styles.sectionHeadingStyle}
 						                  key={item.title}
-						                  onPress={() => this.props.onPressEvent({section: item})}>
+						                  onPress={() => {
+							                  console.log('will open the about button');
+						                  	this.props.onPressEvent({section: item})
+						                  }
+						                  }>
 							<Text>{item.title}</Text>
 						</TouchableOpacity>
 					}
 				></FlatList>
 				<View style={styles.footerContainer}>
 					<TouchableOpacity style={styles.sectionHeadingStyle}
-					                  // onPress={() => navigate('About', {})}
+					                  onPress={() => this.props.onPressEvent('About')}
 					>
 						<Text>About ThunderClouding Apps</Text>
 					</TouchableOpacity>

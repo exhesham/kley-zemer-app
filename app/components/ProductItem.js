@@ -7,7 +7,14 @@ export default class ProductItem extends Component {
 	render() {
 		return (
 			<View style={styles.itemContainer}>
-				<TouchableOpacity style={styles.touchContainter} onpress={()=>{this._open_web_view(this.props.product_url)}}>
+				<TouchableOpacity
+					style={styles.touchContainter}
+					onPress={()=>{
+						console.log('pressed the item....')
+						this.props.onProductPress(this.props.product_url)
+						}
+					}
+					>
 					<View style={styles.imageContainer}>
 						<Image
 							source={{uri: this.props.imageSrc}}
@@ -23,10 +30,6 @@ export default class ProductItem extends Component {
 
 			</View>
 		);
-	}
-
-	_open_web_view(product_url) {
-		
 	}
 }
 

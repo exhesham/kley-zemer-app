@@ -13,40 +13,51 @@ import {getSectionCategory} from '../kzcrawler';
 import DrawerList from "./DrawerList";
 
 
-
 export default class Home extends Component<{}> {
 
-
-	static navigationOptions = {
-		title: 'Welcome',
-	};
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentProduct: <ScrollTabs section={'guitars'} sectionCategories={getSectionCategory('guitars')}/>
+			currentProduct: <ScrollTabs
+				section={'guitars'}
+				onProductPress={(product) => {
+					this.productOpenWeb(product)
+				}}
+				sectionCategories={getSectionCategory('guitars')}/>
 		};
 	}
 
 	render() {
-
+		const {navigate} = this.props.navigation;
 		return (
-				<View style={styles.container}>
-					<DrawerLayoutAndroid
-						ref={(_drawer) => this.drawer = _drawer}
-						drawerWidth={300}
-						drawerPosition={DrawerLayoutAndroid.positions.Left}
-						renderNavigationView={() => <DrawerList onPressEvent={(sectionObject) => {
+			<View style={styles.container}>
+				<DrawerLayoutAndroid
+					ref={(_drawer) => this.drawer = _drawer}
+					drawerWidth={300}
+					drawerPosition={DrawerLayoutAndroid.positions.Left}
+					renderNavigationView={() => <DrawerList
+						navigation={navigate}
+						onPressEvent={(sectionObject) => {
 							this.productNavigate(sectionObject)
 						}}/>}>
-						<View style={{flex: 1, alignItems: 'center'}}>
-							<Navbar openAppDrawer={() => {
-								this.drawer.openDrawer();
-							}}/>
-							{this.state.currentProduct}
-						</View>
-					</DrawerLayoutAndroid>
-				</View>
+					<View style={{flex: 1, alignItems: 'center'}}>
+						<Navbar
+							selectedActionEvent={(action)=>{
+								this.props.navigation.navigate(action)
+							}}
+							openAppDrawer={() => {
+							this.drawer.openDrawer();
+						}}/>
+						{this.state.currentProduct}
+					</View>
+				</DrawerLayoutAndroid>
+			</View>
 		);
+	}
+
+	productOpenWeb(param) {
+		console.log('productOpenWeb:', param)
+		this.props.navigation.navigate('ProductWeb',{'product_uri':param})
 	}
 
 	/**
@@ -54,14 +65,26 @@ export default class Home extends Component<{}> {
 	 * @param param
 	 */
 	productNavigate(param) {
-		console.log('productNavigate', param.section.id)
-		var selectedProduct = <ScrollTabs section={param.section.id} sectionCategories={getSectionCategory(param.section.id)}/>
-		this.setState(previousState => {
-			return { currentProduct: selectedProduct };
-		});
+		if (param == 'About') {
+			this.props.navigation.navigate(param)
+
+		} else {
+			console.log('productNavigate', param.section.id)
+			var selectedProduct = <ScrollTabs
+				section={param.section.id}
+				sectionCategories={getSectionCategory(param.section.id)}
+				onProductPress={(product) => {
+					this.productOpenWeb(product)
+				}}
+
+			/>
+			this.setState(previousState => {
+				return {currentProduct: selectedProduct};
+			});
+		}
+
 	}
 }
-
 
 
 const styles = StyleSheet.create({

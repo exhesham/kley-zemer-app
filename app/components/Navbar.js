@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {ToolbarAndroid, View, StyleSheet, Text, DrawerLayoutAndroid, FlatList} from 'react-native';
 
 import {getSectionCategory} from "../kzcrawler";
@@ -13,18 +13,31 @@ export default class Navbar extends Component {
 		return (<ToolbarAndroid
 			style={styles.toolbar}
 			title=""
-			onIconClicked={()=>{this._openDrawer();}}
+			onIconClicked={() => {
+				this._openDrawer();
+			}}
 			rtl={true}
 			logo={require("../images/logo.png")}
 			navIcon={require("../images/menuIcon.png")}
-			actions = {[
-				{title: "About", show: "never"}
+			actions={[
+				{title: "About", show: "never",}
 			]}
+			onActionSelected={(position)=>{
+				if(position==0){
+					this.props.selectedActionEvent('About');
+				}
+			}}
 		/>);
 	}
 
 	_openDrawer() {
 		this.props.openAppDrawer();
+	}
+
+	onActionSelected(position) {
+		if (position === 0) { // index of 'Settings'
+			showSettings();
+		}
 	}
 }
 const styles = StyleSheet.create({
