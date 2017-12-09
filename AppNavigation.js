@@ -5,7 +5,7 @@ import DrawerList from "./app/components/DrawerList";
 import Home from "./app/components/Home";
 import ProductWeb from "./app/components/ProductWeb";
 import ScrollTabs from "./app/components/ScrollTabs";
-import {AppRegistry} from 'react-native';
+
 
 const AppNavigation = StackNavigator({
 
@@ -27,4 +27,3 @@ const AppNavigation = StackNavigator({
 });
 
 export default AppNavigation
-AppRegistry.registerComponent('AppNavigation', () => AppNavigation);

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-	AppRegistry,
+
 	ToolbarAndroid,
 	View,
 	TouchableOpacity,
@@ -79,10 +79,11 @@ const styles = StyleSheet.create({
 		backgroundColor:'yellow'
 	},
 	sectionHeadingStyle: {
-		paddingVertical: 10,
-		paddingHorizontal: 5,
+		paddingVertical: 16,
+		paddingHorizontal: 14,
 		flex:1,
 		fontSize: 15,
+		fontWeight: 'bold',
 		textAlign: 'left'
 
 	},
