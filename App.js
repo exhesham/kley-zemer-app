@@ -11,6 +11,8 @@ import Navbar from "./app/components/Navbar";
 import ScrollTabs from "./app/components/ScrollTabs";
 import {getSectionCategory} from './app/kzcrawler';
 import DrawerList from "./app/components/DrawerList";
+import Home from "./app/components/Home";
+import AppNavigation from "./AppNavigation";
 
 export default class App extends Component<{}> {
 	static navigationOptions = {
@@ -27,20 +29,7 @@ export default class App extends Component<{}> {
 
 		return (
 			<View style={styles.container}>
-				<DrawerLayoutAndroid
-					ref={(_drawer) => this.drawer = _drawer}
-					drawerWidth={300}
-					drawerPosition={DrawerLayoutAndroid.positions.Left}
-					renderNavigationView={() => <DrawerList onPressEvent={(sectionObject) => {
-						this.productNavigate(sectionObject)
-					}}/>}>
-					<View style={{flex: 1, alignItems: 'center'}}>
-						<Navbar openAppDrawer={() => {
-							this.drawer.openDrawer();
-						}}/>
-						{this.state.currentProduct}
-					</View>
-				</DrawerLayoutAndroid>
+				<AppNavigation/>
 			</View>
 		);
 	}

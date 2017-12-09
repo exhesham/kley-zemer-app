@@ -31,7 +31,6 @@ export default class Home extends Component<{}> {
 
 		return (
 				<View style={styles.container}>
-
 					<DrawerLayoutAndroid
 						ref={(_drawer) => this.drawer = _drawer}
 						drawerWidth={300}
