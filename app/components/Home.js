@@ -10,9 +10,19 @@ import Navbar from "./Navbar";
 
 import ScrollTabs from "./ScrollTabs";
 import {getSectionCategory} from '../kzcrawler';
+
 import DrawerList from "./DrawerList";
+import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
+export const tracker = new GoogleAnalyticsTracker('UA-111279929-1');
+if(tracker && tracker.trackScreenView){
+	try{
+		tracker.trackScreenView('HomeConstructor');
+	}catch(e){
+		console.error('failed to send to google analytics because:' + e + 'the value of tracker is:'+ tracker)
 
+	}
 
+}
 export default class Home extends Component<{}> {
 
 	constructor(props) {
@@ -25,9 +35,12 @@ export default class Home extends Component<{}> {
 				}}
 				sectionCategories={getSectionCategory('guitars')}/>
 		};
+
 	}
 
 	render() {
+
+
 		const {navigate} = this.props.navigation;
 		return (
 			<View style={styles.container}>
@@ -45,6 +58,9 @@ export default class Home extends Component<{}> {
 							selectedActionEvent={(action)=>{
 								this.props.navigation.navigate(action)
 							}}
+							selectedWebviewEvent={(action)=>{
+								this.props.navigation.navigate('ProductWeb',action)
+							}}
 							openAppDrawer={() => {
 							this.drawer.openDrawer();
 						}}/>
@@ -54,10 +70,10 @@ export default class Home extends Component<{}> {
 			</View>
 		);
 	}
-
 	productOpenWeb(param) {
 		console.log('productOpenWeb:', param)
 		this.props.navigation.navigate('ProductWeb',{'product_uri':param})
+		this.drawer.closeDrawer();
 	}
 
 	/**

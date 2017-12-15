@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import {Component} from "react";
-
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class About extends Component {
 	static navigationOptions = {

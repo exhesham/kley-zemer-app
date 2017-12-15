@@ -7,10 +7,18 @@ export default class  ProductWeb extends Component {
 	}
 	render() {
 		const { params } = this.props.navigation.state;
+		var uri = 'http://kley-zemer.co.il/'+params.product_uri;
+		console.log(params)
+		console.log(typeof(params))
+		if (typeof(params) === 'string' ){
+			
+			uri = params;
+		}
+
 		return (
 			<WebView
 				domStorageEnabled={true}
-				source={{uri: 'http://kley-zemer.co.il/'+params.product_uri}}
+				source={{uri: uri}}
 
 			/>
 		);

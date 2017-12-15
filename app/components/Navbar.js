@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {ToolbarAndroid, View, StyleSheet, Text, DrawerLayoutAndroid, FlatList} from 'react-native';
 
-import {getSectionCategory} from "../kzcrawler";
+import Icon from 'react-native-vector-icons/Ionicons';
+import {getProductsOnline} from '../packages/parserAPI';
 
 export default class Navbar extends Component {
 
@@ -10,7 +11,7 @@ export default class Navbar extends Component {
 	}
 
 	render() {
-		return (<ToolbarAndroid
+		return (<Icon.ToolbarAndroid
 			style={styles.toolbar}
 			title=""
 			onIconClicked={() => {
@@ -18,13 +19,21 @@ export default class Navbar extends Component {
 			}}
 			rtl={true}
 			logo={require("../images/logo.png")}
-			navIcon={require("../images/menuIcon.png")}
+			navIconName='md-menu'
 			actions={[
-				{title: "About", show: "never",}
+				{title: "About", show: "never", iconName:'md-trophy'},
+				{title: "Sync", show: "always",showWithText:false, iconName:'md-thumbs-up'},
+				{title: "Search", show: "always",showWithText:false, iconName:'md-search'},
 			]}
 			onActionSelected={(position)=>{
 				if(position==0){
 					this.props.selectedActionEvent('About');
+				}
+				if(position==1){
+					this.props.selectedWebviewEvent('https://paypal.me/heshamrasheedyassin')
+				}
+				if(position==2){
+					this.props.selectedActionEvent('Search')
 				}
 			}}
 		/>);
@@ -32,12 +41,6 @@ export default class Navbar extends Component {
 
 	_openDrawer() {
 		this.props.openAppDrawer();
-	}
-
-	onActionSelected(position) {
-		if (position === 0) { // index of 'Settings'
-			showSettings();
-		}
 	}
 }
 const styles = StyleSheet.create({

@@ -1,7 +1,7 @@
 
 import  repo from './repository/categories'
 
-export { getSectionCategory, getSectionManufacture, getProductsSections, loadProducts};
+export { filterQuery, getSectionCategory, getSectionManufacture, getProductsSections, loadProducts};
 function getSectionCategory(section) {
 	var res = [];
 	console.log('getSectionCategory:', section);
@@ -22,6 +22,25 @@ function getSectionManufacture(section) {
 		res.push({'id': key, 'title': repo.categories[section].manufactures[key].name})
 	}
 	return res;
+}
+
+var allSections = getProductsSections();
+function filterQuery(query){
+	var res = [];
+
+	for (var i=0;i< allSections.length;i++) {
+		var section = allSections[i].id;
+
+
+
+		for (var key in repo.categories[section].manufactures) {
+			if(repo.categories[section].manufactures[key].name.indexOf(query)>-1) {
+				res.push({'id': key, 'title': repo.categories[section].manufactures[key].name})
+			}
+		}
+	}
+	console.debug("found :" + res.length + " results")
+	return res
 }
 
 function getProductsSections() {
