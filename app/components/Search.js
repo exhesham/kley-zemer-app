@@ -2,7 +2,7 @@ import React from 'react';
 import {
 	Text,
 	StyleSheet,
-	View, TextInput,
+	View, TextInput, ActivityIndicator,
 } from 'react-native';
 
 import {Component} from "react";
@@ -10,6 +10,7 @@ import {Toolbar} from 'react-native-material-ui';
 import {COLOR, ThemeProvider} from 'react-native-material-ui';
 import {filterQuery, getSectionCategory} from "../kzcrawler";
 import ScrollTabs from "./ScrollTabs";
+import ProductsSection from "./ProductsSection";
 
 
 // icons can be found at: https://oblador.github.io/react-native-vector-icons/
@@ -22,11 +23,10 @@ export default class About extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {text: 'guitars', queryResults:[],queryScreen:<Text>No results were queried...</Text>};
+		this.state = {text: null, queryScreen:<Text>No results were queried...</Text>};
 	}
 
 	render() {
-
 		return (
 			<ThemeProvider  uiTheme={uiTheme}>
 				<View style={styles.background}>
@@ -39,6 +39,9 @@ export default class About extends Component {
 						searchable={{
 							autoFocus: true,
 							placeholder: 'Search',
+							onSearchClosed: ()=>{
+								this.clean_search_feed()
+							},
 							onSearchPressed: () => {
 								this._userInputQuery(this.state.text);
 							},
@@ -64,22 +67,38 @@ export default class About extends Component {
 		if(!e){
 			return;
 		}
-		var filteredRes = filterQuery(e);
+		// first display activity indicator
+		this.show_waiting_feed();
 		var displayRes = <Text>No results were found for ${e}...</Text>
+		var filteredRes = filterQuery(e);
 		if(filteredRes.length > 0){
-			displayRes =  <ScrollTabs
-				section={'guitars'}
-				onProductPress={(product) => {
-
+			displayRes =<ProductsSection
+				onProductPress={(product)=>{
+					console.debug('navigating to product: ' + product)
 					this.props.navigation.navigate('ProductWeb',{'product_uri':product})
 				}}
-				sectionCategories={filteredRes}/>
+				filter={filteredRes}
+			/>
 		}
 		this.setState(previousState => {
 			return { queryScreen: displayRes};
 		});
 
 
+	}
+	show_waiting_feed() {
+		console.log('showing text in close event ')
+		this.state = {text: null, queryScreen:<ActivityIndicator size="large" color="#0000ff" />};
+		this.setState(previousState => {
+			return { queryScreen: <ActivityIndicator size="large" color="#0000ff" />};
+		});
+	}
+	clean_search_feed() {
+		console.log('showing text in close event ')
+		this.state = {text: null, queryScreen:<Text>No results were queried...</Text>};
+		this.setState(previousState => {
+			return { queryScreen: <Text>No results were queried...</Text>};
+		});
 	}
 }
 
@@ -103,15 +122,6 @@ const styles = StyleSheet.create({
 	baseText: {
 		fontFamily: 'Cochin',
 
-	},
-	titleText: {
-		fontSize: 30,
-		paddingBottom: 3,
-		fontWeight: 'bold',
-	},
-	hyperlink: {
-		fontSize: 20,
-		color: 'blue',
 	},
 	names: {
 		fontWeight: 'bold',

@@ -21,6 +21,7 @@ export default class ScrollTabs extends Component {
 		var children = [];
 		var sectionCategories = this.props.sectionCategories;
 		for(var key in sectionCategories){
+			// children is the products
 			children.push(<ProductsSection
 				onProductPress={(product)=>{
 					console.log('ScrollTabs pressed item product:', product);

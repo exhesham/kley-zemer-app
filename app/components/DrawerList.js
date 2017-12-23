@@ -82,10 +82,6 @@ const styles = StyleSheet.create({
 		paddingVertical: 16,
 		paddingHorizontal: 14,
 		flex:1,
-		fontSize: 15,
-		fontWeight: 'bold',
-		textAlign: 'left'
-
 	},
 	footerContainer: {
 		padding: 20,

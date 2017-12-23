@@ -22,7 +22,7 @@ export default class Navbar extends Component {
 			navIconName='md-menu'
 			actions={[
 				{title: "About", show: "never", iconName:'md-trophy'},
-				{title: "Sync", show: "always",showWithText:false, iconName:'md-thumbs-up'},
+				{title: "Sync", show: "always",showWithText:false, iconName:'md-thumbs-up', iconColor: '#FFD700'},
 				{title: "Search", show: "always",showWithText:false, iconName:'md-search'},
 			]}
 			onActionSelected={(position)=>{

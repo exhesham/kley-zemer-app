@@ -20,14 +20,7 @@ export default {
 		flex:1,
 		backgroundColor:'yellow'
 	},
-	sectionHeadingStyle: {
-		paddingVertical: 10,
-		paddingHorizontal: 5,
-		flex:1,
-		fontSize: 15,
-		textAlign: 'left'
 
-	},
 	footerContainer: {
 		padding: 20,
 		backgroundColor: 'lightgrey'

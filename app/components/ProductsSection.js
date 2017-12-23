@@ -5,16 +5,21 @@ import ProductItem  from "./ProductItem";
 import { loadProducts }  from '../kzcrawler';
 
 export default class ProductsSection extends Component {
-	getProducts(section,category){
-		console.log('getting products',section,category);
-		return loadProducts(section,category)
+	getProducts(section,category,filter){
+		if(filter){
+			console.log('will return filtered products')
+			return filter
+		}else {
+			console.log('getting products', section, category);
+			return loadProducts(section, category)
+		}
 	}
 	render() {
 		return (
 			<View style={styles.container}>
 
 				<FlatList
-					data={this.getProducts(this.props.section,this.props.category)}
+					data={this.getProducts(this.props.section,this.props.category,this.props.filter)}
 					renderItem={({item}) => <ProductItem
 						onProductPress={(product_data)=>{
 							this.props.onProductPress(product_data)}}

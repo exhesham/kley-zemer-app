@@ -10,7 +10,6 @@ export default class ProductItem extends Component {
 				<TouchableOpacity
 					style={styles.touchContainter}
 					onPress={()=>{
-						console.log('pressed the item....')
 						this.props.onProductPress(this.props.product_url)
 						}
 					}
@@ -59,6 +58,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	item_title: {
+		flexWrap: 'wrap',
 		color: 'white',
 		fontWeight: 'bold',
 		fontSize: 15,

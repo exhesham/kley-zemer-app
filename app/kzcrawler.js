@@ -27,19 +27,21 @@ function getSectionManufacture(section) {
 var allSections = getProductsSections();
 function filterQuery(query){
 	var res = [];
-
+	query = query.toLowerCase()
 	for (var i=0;i< allSections.length;i++) {
 		var section = allSections[i].id;
 
+		for (var key in repo.all_products[section]) {
 
-
-		for (var key in repo.categories[section].manufactures) {
-			if(repo.categories[section].manufactures[key].name.indexOf(query)>-1) {
-				res.push({'id': key, 'title': repo.categories[section].manufactures[key].name})
+			var section_cats = repo.all_products[section][key];
+			for(var j=0;j< section_cats.length; j++) {
+				if (section_cats[j].name.toLowerCase().indexOf(query) > -1 || key.toLowerCase().indexOf(query) >  -1) {
+					res.push(section_cats[j]);
+				}
 			}
 		}
 	}
-	console.debug("found :" + res.length + " results")
+	console.debug("found :" + res.length + " results in " +allSections.length + ' sections' )
 	return res
 }
 
