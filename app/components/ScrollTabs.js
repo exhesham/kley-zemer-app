@@ -8,7 +8,7 @@ import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-ta
 
 import {Component} from "react";
 import ProductsSection from "./ProductsSection";
-import {getSectionCategory} from "../kzcrawler";
+
 
 export default class ScrollTabs extends Component {
 

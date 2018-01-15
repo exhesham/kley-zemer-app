@@ -21,7 +21,9 @@ export default class ProductItem extends Component {
 						/>
 					</View>
 					<View style={styles.textContainer}>
-						<Text style={styles.item_title}>{this.props.title}</Text>
+						<View style={styles.item_title_container}>
+							<Text style={styles.item_title} numberOfLines={2}>{this.props.title}</Text>
+						</View>
 						<Text style={styles.item_price1}>Credit: {this.props.price1}</Text>
 						<Text style={styles.item_price2}>Cash: {this.props.price2}</Text>
 					</View>
@@ -54,11 +56,12 @@ const styles = StyleSheet.create({
 	},
 	textContainer: {
 		paddingLeft: 5,
-		alignContent: 'center',
-		justifyContent: 'center',
+	},
+	item_title_container: {
+		marginRight: 1,
 	},
 	item_title: {
-		flexWrap: 'wrap',
+		width: 200,
 		color: 'white',
 		fontWeight: 'bold',
 		fontSize: 15,

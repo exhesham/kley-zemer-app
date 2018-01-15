@@ -7,8 +7,8 @@ import {
 
 import {Component} from "react";
 import {Toolbar} from 'react-native-material-ui';
-import {COLOR, ThemeProvider} from 'react-native-material-ui';
-import {filterQuery, getSectionCategory} from "../kzcrawler";
+import { ThemeProvider} from 'react-native-material-ui';
+import {filterQuery} from "../kzcrawler";
 import ScrollTabs from "./ScrollTabs";
 import ProductsSection from "./ProductsSection";
 
@@ -25,12 +25,13 @@ export default class About extends Component {
 		super(props);
 		this.state = {text: null, queryScreen:<Text>No results were queried...</Text>};
 	}
-
+	// resource: https://github.com/xotahal/react-native-material-ui/blob/master/docs/Toolbar.md
 	render() {
 		return (
 			<ThemeProvider  uiTheme={uiTheme}>
 				<View style={styles.background}>
 					<Toolbar
+						isSearchActive={true}
 						leftElement="home"
 						onLeftElementPress={()=>{
 							this.props.navigation.navigate('Home')
@@ -69,7 +70,7 @@ export default class About extends Component {
 		}
 		// first display activity indicator
 		this.show_waiting_feed();
-		var displayRes = <Text>No results were found for ${e}...</Text>
+		var displayRes = <Text>No results were found for {e}...</Text>
 		var filteredRes = filterQuery(e);
 		if(filteredRes.length > 0){
 			displayRes =<ProductsSection
